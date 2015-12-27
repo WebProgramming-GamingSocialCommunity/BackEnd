@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
                        length: { minimum: 5, maximum: 40 },
                        confirmation: true
   validates :password_confirmation, presence: true
+  has_many :posts, dependent: :destroy
 end
