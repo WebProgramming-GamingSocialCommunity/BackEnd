@@ -7,8 +7,10 @@
 one:
   name: Alice
   email: 123@ex.com
-  password: 1234567
+  password_digest: <%= User.digest('password') %>
 # column: value
 #
-two: {}
-#  column: value
+michael:
+  name: Michael Example
+  email: michael@example.com
+  password_digest: <%= User.digest('123456') %>
