@@ -21,7 +21,8 @@ gem 'rb-readline'
 
 gem 'will_paginate', '3.0.7'
 
-gem 'bootstrap-will_paginate', '0.0.10'
+gem 'rails-api'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
