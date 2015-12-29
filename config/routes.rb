@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :users, defaults: { format: 'json' }
-  resources :microposts,              only: [:create, :destroy]
+  resources :posts, defaults: { format: 'json' }
 
   # Example resource route with options:
   #   resources :products do

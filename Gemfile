@@ -19,11 +19,6 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'rb-readline'
 
-gem 'will_paginate', '3.0.7'
-
-gem 'rails-api'
-
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -45,6 +40,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  
+  gem 'factory_girl_rails'
+  
+  gem 'faker'
+  
 end
 
 group :development do
