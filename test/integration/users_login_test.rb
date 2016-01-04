@@ -9,7 +9,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     post login_path, session: { email: @user.email, password: '123456' }
     assert_redirected_to @user
     follow_redirect!
-    assert_equal "Michael Example", json_response['name']
+    assert_equal "Michael Example", json_response['user']['name']
   end
     
   def json_response

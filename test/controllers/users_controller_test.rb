@@ -24,7 +24,13 @@ class UsersControllerTest < ActionController::TestCase
   test "should show user" do
     get :show, id: @user, format: :json
     assert_response :success
-    assert_equal @user.email, json_response['email']
+    assert_equal @user.email, json_response['user']['email']
+  end
+  
+  test "should show user's post" do
+    get :show, id: @user, format: :json
+    assert_response :success
+    assert_equal @user.posts[1]['content'], json_response['posts'][1]['content']
   end
 
   test "should update user" do

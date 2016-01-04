@@ -27,6 +27,21 @@ class PostsControllerTest < ActionController::TestCase
     end
     assert_response :success
   end
+  
+  tests "should redirect create when not logged in" do
+    assert_no_difference 'Post.count' do
+      post :create, post: {content: "Lorem ipsum"}
+    end
+    assert_redirected_to login_url
+  end
+  
+  tests "should redirect destroy when not logged in" do
+    @post = posts(:orange)
+    assert_no_difference 'Post.count' do
+      delete :destroy, id: @post
+    end
+    assert_redirected_to login_url
+  end  
     
   def json_response
     ActiveSupport::JSON.decode @response.body
