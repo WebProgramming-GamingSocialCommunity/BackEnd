@@ -19,4 +19,8 @@ class ActiveSupport::TestCase
     post login_path, session: { email:       user.email,
                                 password:    password   }
   end  
+
+  def log_in_as_for_ctrl(user)
+    session[:user_id] = user.id
+  end
 end

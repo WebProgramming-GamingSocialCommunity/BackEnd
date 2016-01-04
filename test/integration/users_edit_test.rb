@@ -3,11 +3,11 @@ require 'test_helper'
 class UsersEditTest < ActionDispatch::IntegrationTest
 
   def setup
-    @user = users(:michael)
+    @user = users(:archer)
   end
   
   test "unsuccessful edit" do
-    log_in_as(users(:one))
+    log_in_as(users(:archer))
     patch user_path(@user), user: { name:  "",
                                     email: "foo@invalid",
                                     password:              "foo",
@@ -16,7 +16,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end  
   
   test "successful edit" do
-    log_in_as(users(:one))  
+    log_in_as(users(:archer))  
     name  = "Foo Bar"
     email = "foo@bar.com"
     patch user_path(@user), user: { name:  name,

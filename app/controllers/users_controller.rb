@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -73,6 +74,15 @@ class UsersController < ApplicationController
     
     def logged_in_user
       unless logged_in?
+        respond_to do |format|
+          format.json { render status: :unauthorized }
+        end
+      end
+    end
+    
+    def correct_user
+      @user = User.find(params[:id])
+      unless current_user?(@user)
         respond_to do |format|
           format.json { render status: :unauthorized }
         end
