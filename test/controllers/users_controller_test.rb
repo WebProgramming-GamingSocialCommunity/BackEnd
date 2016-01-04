@@ -32,18 +32,30 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal @user.posts[1]['content'], json_response['posts'][1]['content']
   end
-
-  test "should update user" do
-    patch :update, id: @user, user: { name:'bek', email:'1e43@fjl.com', password:'12345678', password_confirmation:'12345678' }, format: :json
-    assert_response :success
+ 
+  test "should return 401 when not logged in" do
+    patch :update, id: @user, user: { name: @user.name, email: @user.email }, format: :json
+    assert_response 401
   end
 
-  test "should destroy user" do
-    assert_difference('User.count', -1) do
+  test "should not update user" do 
+    patch :update, id: @user, user: { name:'bek', email:'1e43@fjl.com', password:'12345678', password_confirmation:'12345678' }, format: :json
+    assert_response 401
+  end
+  
+#  test "should not update user" do
+#    log_in_as(users(:one))
+#    patch :update, id: @user, user: { name:'bek', email:'1e43@fjl.com', password:'12345678', password_confirmation:'12678' }, format: :json
+#    assert_response 422
+#    assert_equal ["doesn't match Password"], json_response['password_confirmation']
+#  end
+  
+  test "should not destroy user" do
+    assert_no_difference('User.count') do
       delete :destroy, id: @user, format: :json
     end
 
-    assert_response 204
+    assert_response 401
   end
     
   def json_response

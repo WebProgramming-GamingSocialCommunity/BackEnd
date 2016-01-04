@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -57,6 +57,8 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -68,4 +70,12 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:email, :name, :password, :password_confirmation)
     end
+    
+    def logged_in_user
+      unless logged_in?
+        respond_to do |format|
+          format.json { render status: :unauthorized }
+        end
+      end
+    end    
 end
